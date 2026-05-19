@@ -41,6 +41,7 @@
     color: var(--escuro);
     line-height: 1.6;
     overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent; /* Remove default mobile tap highlight */
   }
 
   /* ── BARRA TOPO DE ESCASSEZ EXTREMA ── */
@@ -182,6 +183,11 @@
   @keyframes pulseScale {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.03); }
+  }
+
+  .btn-principal:active {
+    transform: scale(0.96) !important;
+    transition: transform 0.1s;
   }
 
   .sub-btn {
@@ -441,6 +447,15 @@
     border-color: var(--dourado);
     transform: translateX(4px);
   }
+  @media (max-width: 640px) {
+    .quiz-option-btn {
+      padding: 22px 24px;
+      margin-bottom: 4px;
+    }
+    .quiz-options {
+      gap: 16px;
+    }
+  }
   .quiz-option-btn::after {
     content: '→';
     opacity: 0;
@@ -585,6 +600,45 @@
     font-style: italic;
     color: var(--verde-pastel);
     line-height: 1.6;
+  }
+
+  /* MOBILE HORIZONTAL SCROLLING FOR CARDS */
+  @media (max-width: 768px) {
+    .dor-grid, .reviews-grid, .passos {
+      display: flex !important;
+      overflow-x: auto !important;
+      scroll-snap-type: x mandatory;
+      padding: 10px 20px 30px !important;
+      margin: 0 -24px !important;
+      gap: 16px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .dor-grid::-webkit-scrollbar, .reviews-grid::-webkit-scrollbar, .passos::-webkit-scrollbar { display: none; }
+    .dor-card, .review-card, .passo-card {
+      flex: 0 0 280px;
+      scroll-snap-align: center;
+    }
+  }
+
+  .swipe-indicator {
+    display: none;
+    text-align: center;
+    font-size: 11px;
+    color: var(--suave);
+    margin-top: -20px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    animation: sideToSide 1.5s infinite ease-in-out;
+  }
+  @media (max-width: 768px) {
+    .swipe-indicator { display: block; }
+  }
+  @keyframes sideToSide {
+    0%, 100% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
   }
 
   /* ── COMPARAÇÃO "ANTES VS DEPOIS" (TABELA AGRESSIVA) ── */
@@ -1419,165 +1473,39 @@
   }
   footer p.cnpj { margin-top: 12px; font-weight: 500; color: rgba(255,255,255,0.25); }
 
-  /* ── NOTIFICAÇÃO COMPRA LIVE (SOCIAL PROOF FLUTUANTE) ── */
-  .toast-compra {
-    position: fixed;
-    bottom: 24px;
-    left: 24px;
-    background: var(--branco);
-    border-radius: var(--radius-md);
-    padding: 14px 20px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.18);
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    z-index: 9999;
-    transform: translateY(120px);
-    opacity: 0;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s;
-    border-left: 4px solid var(--verde-neon);
-    max-width: 320px;
-  }
-  .toast-compra.show {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  .toast-icon {
-    width: 36px;
-    height: 36px;
-    background: rgba(56, 176, 0, 0.1);
-    color: var(--verde-neon);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    flex-shrink: 0;
-  }
-  .toast-info p {
-    font-size: 12.5px;
-    color: var(--escuro);
-    line-height: 1.4;
-  }
-  .toast-info p strong { font-weight: 700; }
-  .toast-info span.time {
-    font-size: 10px;
-    color: var(--suave);
-    display: block;
-    margin-top: 2px;
-  }
-
-  /* ── POPUP EXIT-INTENT (OFERTA SUPREMA) ── */
-  .modal-exit {
-    position: fixed;
-    inset: 0;
-    background: rgba(11, 37, 25, 0.85);
-    z-index: 100000;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-    backdrop-filter: blur(8px);
-  }
-  .modal-exit-content {
-    background: var(--branco);
-    border-radius: var(--radius-lg);
-    max-width: 500px;
-    width: 100%;
-    padding: 44px;
-    position: relative;
-    text-align: center;
-    box-shadow: 0 30px 70px rgba(0,0,0,0.5);
-    border: 3px solid var(--laranja);
-    animation: popUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
-
-  @keyframes popUp {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
-  }
-
-  .modal-close {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: var(--suave);
-    transition: color 0.2s;
-  }
-  .modal-close:hover { color: var(--escuro); }
-
-  .modal-exit-content .warning-tag {
-    background: rgba(214, 34, 34, 0.1);
-    color: #D62222;
-    font-size: 12px;
-    font-weight: 800;
-    padding: 6px 16px;
-    border-radius: 100px;
-    text-transform: uppercase;
-    display: inline-block;
-    margin-bottom: 20px;
-    letter-spacing: 0.5px;
-  }
-  .modal-exit-content h3 {
-    font-family: var(--font-heading);
-    font-size: 28px;
-    color: var(--verde-escuro);
-    line-height: 1.2;
-    margin-bottom: 14px;
-    font-weight: 800;
-  }
-  .modal-exit-content p {
-    font-size: 15px;
-    color: var(--medio);
-    line-height: 1.5;
-    margin-bottom: 28px;
-  }
-  .modal-exit-content .price-box {
-    background: var(--creme);
-    padding: 16px;
-    border-radius: var(--radius-md);
-    margin-bottom: 30px;
-    border: 1px solid #EAECEB;
-  }
-  .modal-exit-content .price-box .price {
-    font-family: var(--font-heading);
-    font-size: 38px;
-    font-weight: 900;
-    color: var(--verde-escuro);
-  }
-
-  /* ── FLOATING MOBILE BAR ── */
-  .sticky-bar-mobile {
-    display: none;
-    position: fixed;
-    bottom: 0; left: 0; right: 0;
-    background: var(--branco);
-    padding: 14px 20px;
-    z-index: 999;
-    box-shadow: 0 -10px 25px rgba(11, 37, 25, 0.15);
-    border-top: 1px solid #EAECEB;
-  }
-  .sticky-bar-mobile a {
-    display: block;
-    background: linear-gradient(135deg, var(--laranja) 0%, #D84A04 100%);
-    color: #fff;
-    text-align: center;
-    padding: 16px;
-    border-radius: var(--radius-md);
-    font-weight: 800;
-    font-size: 15px;
-    text-decoration: none;
-    text-transform: uppercase;
-    box-shadow: var(--sombra-glow);
-  }
-
   @media (max-width: 640px) {
-    .sticky-bar-mobile { display: block; }
+    .sticky-bar-mobile { 
+      display: flex; 
+      justify-content: center;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+    }
+    .sticky-bar-mobile a {
+      width: 100%;
+      border-radius: 12px;
+      font-size: 14px;
+      padding: 14px;
+      letter-spacing: 0;
+    }
     body { padding-bottom: 80px; }
+  }
+
+  /* PREMIUM MOBILE TOUCH STATES */
+  .quiz-option-btn:active, .btn-checkout:active, .faq-q:active {
+    transform: scale(0.98);
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  /* SECTION REVEAL ANIMATIONS */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+  }
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
   }
 </style>
 </head>
@@ -1664,7 +1592,7 @@
 </section>
 
 <!-- SEÇÃO DIAGNÓSTICO (QUIZ INTERATIVO) -->
-<section class="quiz-section" id="diagnostico">
+<section class="quiz-section reveal" id="diagnostico">
   <div class="quiz-container">
     <div class="quiz-header">
       <h3>Diagnóstico de Foco e Atenção</h3>
@@ -1742,13 +1670,14 @@
 </section>
 
 <!-- SEÇÃO AGRESSIVA DE DOR -->
-<section class="dor-section">
+<section class="dor-section reveal">
   <div class="dor-header">
     <p style="color: var(--laranja); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 13px; margin-bottom: 8px;">A dura realidade que ninguém te conta</p>
     <h2>O cérebro do seu filho está sendo <em>sequestrado</em> todos os dias</h2>
     <p>Não é falta de educação ou preguiça dele. É o vício fisiológico que as grandes empresas de tecnologia criaram.</p>
   </div>
 
+  <div class="swipe-indicator">← deslize para ver mais →</div>
   <div class="dor-grid">
     <div class="dor-card">
       <span class="dor-icon">😤</span>
@@ -1778,7 +1707,7 @@
 </section>
 
 <!-- COMPARATIVO ANTES VS DEPOIS -->
-<section class="section-comparacao">
+<section class="section-comparacao reveal">
   <div class="comparacao-container">
     <div class="comparacao-header">
       <h2>O método convencional versus o <em>Método NeuraKids</em></h2>
@@ -1813,7 +1742,7 @@
 </section>
 
 <!-- SEÇÃO DO MECANISMO ÚNICO -->
-<section class="section-mecanismo">
+<section class="section-mecanismo reveal">
   <div class="mecanismo-inner">
     <div class="mecanismo-header">
       <p style="color: var(--verde-brand); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 13px; margin-bottom: 8px;">A Ciência da Atenção Plena</p>
@@ -1825,6 +1754,7 @@
       <p>Diferente de passatempos genéricos de bancas, cada folha do NeuraKids é milimetricamente calculada. O nível de dificuldade aumenta 3% a cada folha, mantendo a criança no chamado "Estado de Fluxo" — onde o cérebro dela secreta dopamina pelo esforço e conclusão saudável, não pela superestimulação visual de uma tela.</p>
     </div>
 
+    <div class="swipe-indicator">← deslize para ver os passos →</div>
     <div class="passos">
       <div class="passo-card">
         <span class="passo-num">1</span>
@@ -1851,7 +1781,7 @@
 </section>
 
 <!-- O QUE VOCÊ RECEBE & VALUE STACK -->
-<section class="section-produto">
+<section class="section-produto reveal">
   <div class="produto-inner">
     <div class="produto-header">
       <h2>O que está incluso no <em>Método Completo</em></h2>
@@ -1935,12 +1865,13 @@
 </section>
 
 <!-- SEÇÃO DEPOIMENTOS (WHATSAPP E PROVA SOCIAL) -->
-<section class="section-depoimentos">
+<section class="section-depoimentos reveal">
   <div class="depo-inner">
     <div class="depo-header">
       <h2>O alívio real estampado na tela do celular de <em>mães reais</em></h2>
     </div>
 
+    <div class="swipe-indicator">← deslize para ver relatos →</div>
     <!-- SIMULAÇÃO CHAT WHATSAPP -->
     <div class="whatsapp-chats">
       <!-- Chat 1 -->
@@ -2136,30 +2067,6 @@
   <p class="cnpj">NeuraKids Treinamentos LTDA · CNPJ: 48.912.455/0001-09</p>
 </footer>
 
-<!-- NOTIFICAÇÃO COMPRA FLUTUANTE (LIVE) -->
-<div class="toast-compra" id="live-purchase-toast">
-  <div class="toast-icon">⚡</div>
-  <div class="toast-info">
-    <p id="purchase-text"><strong>Mariana S.</strong> (São Paulo, SP) acabou de adquirir o Combo Premium Completo!</p>
-    <span class="time" id="purchase-time">há 12 segundos</span>
-  </div>
-</div>
-
-<!-- POPUP INTENÇÃO DE SAÍDA (EXIT MODAL) -->
-<div class="modal-exit" id="exit-intent-modal">
-  <div class="modal-exit-content">
-    <button class="modal-close" onclick="closeExitModal()">×</button>
-    <span class="warning-tag">🚨 VAGAS LIMITADAS</span>
-    <h3>ESPERA! Não desista do foco do seu filho agora...</h3>
-    <p>O preço do Plano Premium subirá para R$ 99,00 nas próximas horas. Garanta o método completo + os 3 Bônus Exclusivos por apenas R$ 17,99 antes de fechar esta página.</p>
-    <div class="price-box">
-      <span style="font-size: 13px; color: var(--suave); display: block; text-decoration: line-through;">De R$ 99,00 por apenas</span>
-      <span class="price">R$ 17,99</span>
-    </div>
-    <a href="https://pay.kirvano.com/4ce9e9f4-fdfd-46a2-99ee-00887ff09e06" class="btn-checkout" style="background: linear-gradient(135deg, var(--laranja) 0%, #D84A04 100%); color: #fff;">Quero o Desconto Garantido →</a>
-  </div>
-</div>
-
 <!-- BARRA FIXA MOBILE -->
 <div class="sticky-bar-mobile">
   <a href="#ofertas">Quero o Método Completo →</a>
@@ -2285,66 +2192,21 @@
     });
   });
 
-  // FLOATING PURCHASE TOAST SIMULATOR
-  const nomesCompradores = ["Mariana S.", "Roberta F.", "Ana Clara G.", "Patrícia D.", "Juliana K.", "Marta L.", "Luciana V.", "Renata P.", "Fernanda R."];
-  const cidadesCompradores = ["São Paulo, SP", "Rio de Janeiro, RJ", "Belo Horizonte, MG", "Curitiba, PR", "Porto Alegre, RS", "Brasília, DF", "Salvador, BA", "Campinas, SP", "Florianópolis, SC"];
-  const pacotesCompradores = ["Combo Premium Completo", "Plano Básico", "Combo Premium Completo", "Combo Premium Completo"];
-  const toast = document.getElementById("live-purchase-toast");
-
-  function triggerPurchaseToast() {
-    const randomIdx = Math.floor(Math.random() * nomesCompradores.length);
-    const randomPacoteIdx = Math.floor(Math.random() * pacotesCompradores.length);
-    
-    const nome = nomesCompradores[randomIdx];
-    const cidade = cidadesCompradores[randomIdx];
-    const pacote = pacotesCompradores[randomPacoteIdx];
-    const tempo = Math.floor(Math.random() * 45) + 5; // 5s to 50s
-
-    document.getElementById("purchase-text").innerHTML = `<strong>${nome}</strong> (${cidade}) acabou de adquirir o <strong>${pacote}</strong>!`;
-    document.getElementById("purchase-time").textContent = `há ${tempo} segundos`;
-    
-    toast.classList.add("show");
-
-    setTimeout(() => {
-      toast.classList.remove("show");
-    }, 6000); // Keep on screen for 6s
-  }
-
-  // Trigger toast every 22 seconds (first after 10s)
-  setTimeout(() => {
-    triggerPurchaseToast();
-    setInterval(triggerPurchaseToast, 22000);
-  }, 10000);
-
-  // EXIT INTENT DETECTOR
-  let exitTriggered = false;
-  
-  // Desktop mouse exit detector
-  document.addEventListener("mouseleave", function (e) {
-    if (e.clientY < 20 && !exitTriggered) {
-      triggerExitIntent();
+  // REVEAL ANIMATION ON SCROLL
+  function reveal() {
+    var reveals = document.querySelectorAll(".reveal");
+    for (var i = 0; i < reveals.length; i++) {
+      var windowHeight = window.innerHeight;
+      var elementTop = reveals[i].getBoundingClientRect().top;
+      var elementVisible = 150;
+      if (elementTop < windowHeight - elementVisible) {
+        reveals[i].classList.add("active");
+      }
     }
-  });
-
-  // Mobile fast scroll-up / exit intent detector
-  let lastScrollTop = 0;
-  window.addEventListener("scroll", function() {
-    let st = window.pageYOffset || document.documentElement.scrollTop;
-    // If scrolling up fast and near top
-    if (st < lastScrollTop && st < 150 && lastScrollTop - st > 45 && !exitTriggered) {
-      triggerExitIntent();
-    }
-    lastScrollTop = st <= 0 ? 0 : st;
-  }, false);
-
-  function triggerExitIntent() {
-    exitTriggered = true;
-    document.getElementById("exit-intent-modal").style.display = "flex";
   }
-
-  function closeExitModal() {
-    document.getElementById("exit-intent-modal").style.display = "none";
-  }
+  window.addEventListener("scroll", reveal);
+  // Initial check
+  reveal();
 </script>
 </body>
 </html>
