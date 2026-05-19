@@ -1,0 +1,2350 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeuraKids – Método Neurocientífico de Foco Infantil</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,600&display=swap" rel="stylesheet">
+<style>
+  /* ── SISTEMA DE DESIGN & RESETS ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --verde-escuro: #0B2519;
+    --verde-medio: #133A26;
+    --verde-brand: #2D6A4F;
+    --verde-neon: #38B000;
+    --verde-claro: #AACC00;
+    --verde-pastel: #D8F3DC;
+    --laranja: #F26419;
+    --laranja-hover: #E0530F;
+    --dourado: #FF9F1C;
+    --creme: #FDFBF7;
+    --escuro: #121614;
+    --medio: #4E5954;
+    --suave: #8C9993;
+    --branco: #FFFFFF;
+    --sombra-card: 0 12px 30px rgba(0, 0, 0, 0.05);
+    --sombra-glow: 0 0 20px rgba(242, 100, 25, 0.35);
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --radius-sm: 8px;
+    --font-heading: 'Fraunces', serif;
+    --font-body: 'Outfit', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--creme);
+    color: var(--escuro);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── BARRA TOPO DE ESCASSEZ EXTREMA ── */
+  .topbar {
+    background: linear-gradient(90deg, #D62222 0%, #F26419 50%, #D62222 100%);
+    color: #fff;
+    text-align: center;
+    padding: 12px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 100;
+    box-shadow: 0 4px 15px rgba(214, 34, 34, 0.3);
+    animation: pulseGlow 2s infinite ease-in-out;
+  }
+  .topbar span { color: #FFE600; font-weight: 800; text-decoration: underline; }
+
+  @keyframes pulseGlow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.95; }
+  }
+
+  /* ── HERO SECTION & HEADER ── */
+  .hero {
+    background: radial-gradient(circle at 80% 20%, #E8F7EE 0%, var(--branco) 70%);
+    padding: 80px 24px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 450px;
+    height: 450px;
+    background: rgba(82, 183, 136, 0.12);
+    border-radius: 50%;
+    filter: blur(50px);
+    z-index: 0;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    left: -50px;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 159, 28, 0.08);
+    border-radius: 50%;
+    filter: blur(40px);
+    z-index: 0;
+  }
+  
+  .hero-inner { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; }
+
+  .badge-urgente {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(45, 106, 79, 0.1);
+    color: var(--verde-escuro);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 18px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+    border: 1px solid rgba(45, 106, 79, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .badge-urgente .dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--laranja);
+    border-radius: 50%;
+    animation: flash 1s infinite alternate;
+  }
+
+  @keyframes flash {
+    from { opacity: 0.3; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1.2); }
+  }
+
+  .hero h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(34px, 5.5vw, 62px);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--verde-escuro);
+    margin-bottom: 24px;
+    letter-spacing: -0.5px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--laranja);
+    background: linear-gradient(120deg, rgba(255, 159, 28, 0.15) 0%, rgba(255, 159, 28, 0.3) 100%);
+    padding: 2px 10px;
+    border-radius: var(--radius-sm);
+  }
+
+  .hero-sub {
+    font-size: clamp(17px, 2.5vw, 21px);
+    color: var(--medio);
+    max-width: 740px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+    font-weight: 400;
+  }
+  .hero-sub strong { color: var(--verde-escuro); font-weight: 700; }
+
+  /* BOTOES PRIMARIOS */
+  .btn-principal {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--laranja) 0%, #D84A04 100%);
+    color: #fff;
+    font-size: clamp(16px, 2vw, 20px);
+    font-weight: 800;
+    padding: 22px 50px;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    box-shadow: var(--sombra-glow);
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    animation: pulseScale 1.8s infinite ease-in-out;
+  }
+  .btn-principal:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(242, 100, 25, 0.55);
+  }
+  .btn-principal:active { transform: translateY(1px); }
+
+  @keyframes pulseScale {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+  }
+
+  .sub-btn {
+    font-size: 13px;
+    color: var(--suave);
+    margin-top: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+  }
+
+  /* VSL / MOCKUP DE VÍDEO INTERATIVO */
+  .vsl-container {
+    max-width: 760px;
+    margin: 48px auto 0;
+    background: #000;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 25px 60px rgba(11, 37, 25, 0.15);
+    border: 4px solid var(--branco);
+    position: relative;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  .vsl-preview-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+    transition: transform 0.5s ease;
+  }
+  .vsl-container:hover .vsl-preview-img { transform: scale(1.03); }
+
+  .vsl-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.65) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    padding: 30px;
+    text-align: center;
+  }
+
+  .vsl-play-btn {
+    width: 90px;
+    height: 90px;
+    background: var(--laranja);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 30px var(--laranja);
+    margin-bottom: 20px;
+    position: relative;
+    animation: waveGlow 2s infinite ease-in-out;
+  }
+  .vsl-play-btn svg { width: 34px; height: 34px; fill: #fff; margin-left: 6px; }
+
+  @keyframes waveGlow {
+    0% { box-shadow: 0 0 0 0 rgba(242, 100, 25, 0.6); }
+    70% { box-shadow: 0 0 0 20px rgba(242, 100, 25, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(242, 100, 25, 0); }
+  }
+
+  .vsl-title {
+    font-family: var(--font-heading);
+    font-size: clamp(20px, 3vw, 28px);
+    font-weight: 800;
+    max-width: 580px;
+    line-height: 1.25;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  }
+  .vsl-sub {
+    font-size: 14px;
+    color: var(--dourado);
+    font-weight: 700;
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .vsl-sub span {
+    width: 8px; height: 8px; background-color: var(--verde-neon); border-radius: 50%; display: inline-block;
+  }
+
+  /* SLIDES DO INTERACTIVE VSL (VÍDEO SIMULADO) */
+  .vsl-slides-container {
+    display: none;
+    position: absolute;
+    inset: 0;
+    background: #0B2519;
+    color: #fff;
+    padding: 40px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+  }
+  .vsl-slide {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    animation: fadeEffect 0.5s ease-in-out;
+  }
+  .vsl-slide.active { display: flex; }
+  .vsl-slide h4 {
+    font-family: var(--font-heading);
+    font-size: clamp(22px, 3.5vw, 32px);
+    color: #FFF;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+  .vsl-slide h4 span { color: var(--dourado); }
+  .vsl-slide p {
+    font-size: 16px;
+    color: var(--verde-pastel);
+    max-width: 540px;
+    line-height: 1.5;
+  }
+  .vsl-slide .slide-icon { font-size: 52px; margin-bottom: 12px; }
+
+  @keyframes fadeEffect {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .vsl-controls {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 15px;
+  }
+  .vsl-progress-bar {
+    flex-grow: 1;
+    height: 6px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 10px;
+    margin: 0 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .vsl-progress {
+    height: 100%;
+    background: var(--laranja);
+    width: 25%;
+    transition: width 0.3s ease;
+  }
+  .vsl-btn-next {
+    background: var(--verde-brand);
+    color: #fff;
+    border: none;
+    padding: 10px 24px;
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .vsl-btn-next:hover { background: var(--verde-neon); }
+
+  /* ── DIAGNOSTIC QUIZ (INTERATIVO) ── */
+  .quiz-section {
+    background: #0B2519;
+    color: #fff;
+    padding: 80px 24px;
+    position: relative;
+  }
+  .quiz-container {
+    max-width: 720px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+    position: relative;
+  }
+  .quiz-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .quiz-header h3 {
+    font-family: var(--font-heading);
+    font-size: 26px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: #FFF;
+  }
+  .quiz-header p {
+    font-size: 14px;
+    color: var(--verde-pastel);
+  }
+  .quiz-steps {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 30px;
+  }
+  .quiz-step-dot {
+    flex-grow: 1;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+  }
+  .quiz-step-dot.active {
+    background: var(--dourado);
+  }
+
+  .quiz-question-card {
+    display: none;
+  }
+  .quiz-question-card.active {
+    display: block;
+    animation: fadeEffect 0.4s ease-in-out;
+  }
+  .quiz-question-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: #FFF;
+  }
+  .quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .quiz-option-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-md);
+    padding: 18px 24px;
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .quiz-option-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--dourado);
+    transform: translateX(4px);
+  }
+  .quiz-option-btn::after {
+    content: '→';
+    opacity: 0;
+    transition: opacity 0.2s;
+    color: var(--dourado);
+    font-weight: 700;
+  }
+  .quiz-option-btn:hover::after {
+    opacity: 1;
+  }
+
+  /* LOADING SCREEN QUIZ */
+  .quiz-loading-card {
+    display: none;
+    text-align: center;
+    padding: 40px 0;
+  }
+  .spinner {
+    width: 60px;
+    height: 60px;
+    border: 5px solid rgba(255, 255, 255, 0.1);
+    border-top-color: var(--dourado);
+    border-radius: 50%;
+    margin: 0 auto 24px;
+    animation: spin 1s infinite linear;
+  }
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  .loading-status-list {
+    list-style: none;
+    max-width: 320px;
+    margin: 20px auto 0;
+    text-align: left;
+  }
+  .loading-status-item {
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .loading-status-item.done { color: var(--verde-pastel); }
+  .loading-status-item.done::before { content: '✓'; color: var(--verde-neon); font-weight: 700; }
+
+  /* RESULTS SCREEN QUIZ */
+  .quiz-results-card {
+    display: none;
+    animation: fadeEffect 0.5s ease-in-out;
+  }
+  .result-banner {
+    background: rgba(214, 34, 34, 0.15);
+    border: 1px dashed #D62222;
+    border-radius: var(--radius-md);
+    padding: 24px;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    text-align: left;
+  }
+  .result-banner-icon { font-size: 32px; }
+  .result-banner h4 { font-size: 18px; color: #FFF; margin-bottom: 6px; }
+  .result-banner p { font-size: 14px; color: #FFA3A3; line-height: 1.5; }
+  .quiz-results-text {
+    font-size: 16px;
+    color: var(--verde-pastel);
+    line-height: 1.7;
+    margin-bottom: 30px;
+  }
+  .quiz-results-text strong { color: #fff; }
+
+  /* ── SEÇÃO AGRESSIVA DE DOR ── */
+  .dor-section {
+    background: #121614;
+    color: #fff;
+    padding: 90px 24px;
+    position: relative;
+  }
+  .dor-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 10% 80%, rgba(214, 34, 34, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .dor-header { text-align: center; max-width: 800px; margin: 0 auto 56px; }
+  .dor-header h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(28px, 4.5vw, 46px);
+    line-height: 1.2;
+    margin-bottom: 20px;
+    font-weight: 900;
+  }
+  .dor-header h2 em { font-style: italic; color: #FF4D4D; }
+  .dor-header p { font-size: 17px; color: rgba(255,255,255,0.7); }
+
+  .dor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .dor-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .dor-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(214, 34, 34, 0.3);
+  }
+  .dor-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 4px; height: 100%;
+    background: #D62222;
+    opacity: 0.5;
+  }
+  .dor-icon { font-size: 36px; margin-bottom: 16px; display: block; }
+  .dor-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #FFF; }
+  .dor-card p { font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.6; }
+
+  .quote-dor {
+    max-width: 680px;
+    margin: 60px auto 0;
+    background: rgba(255,255,255,0.02);
+    border-left: 4px solid var(--laranja);
+    padding: 30px;
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+  .quote-dor p {
+    font-size: 18px;
+    font-style: italic;
+    color: var(--verde-pastel);
+    line-height: 1.6;
+  }
+
+  /* ── COMPARAÇÃO "ANTES VS DEPOIS" (TABELA AGRESSIVA) ── */
+  .section-comparacao {
+    padding: 90px 24px;
+    background: var(--branco);
+  }
+  .comparacao-container {
+    max-width: 840px;
+    margin: 0 auto;
+  }
+  .comparacao-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  .comparacao-header h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(26px, 4vw, 40px);
+    color: var(--verde-escuro);
+    font-weight: 800;
+  }
+  .comparacao-header h2 em { color: var(--verde-brand); font-style: italic; }
+
+  .comparacao-table {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 640px) {
+    .comparacao-table { grid-template-columns: 1fr; }
+  }
+  .comparacao-col {
+    background: var(--creme);
+    border-radius: var(--radius-lg);
+    padding: 36px 30px;
+    box-shadow: var(--sombra-card);
+  }
+  .comparacao-col.antigo {
+    border: 1px solid rgba(214, 34, 34, 0.15);
+    background: #FFF7F7;
+  }
+  .comparacao-col.novo {
+    border: 2px solid var(--verde-brand);
+    background: #F4FAF6;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(45, 106, 79, 0.08);
+  }
+  .comparacao-tag {
+    font-size: 12px;
+    font-weight: 800;
+    padding: 6px 14px;
+    border-radius: 100px;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+  }
+  .comparacao-col.antigo .comparacao-tag { background: #FFD4D4; color: #D62222; }
+  .comparacao-col.novo .comparacao-tag { background: var(--verde-pastel); color: var(--verde-escuro); }
+
+  .comparacao-col h3 {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    margin-bottom: 24px;
+  }
+  .comparacao-col.antigo h3 { color: #A61C1C; }
+  .comparacao-col.novo h3 { color: var(--verde-escuro); }
+
+  .comparacao-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+  .comparacao-item {
+    font-size: 15px;
+    line-height: 1.5;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .comparacao-col.antigo .comparacao-item { color: #735151; }
+  .comparacao-col.novo .comparacao-item { color: var(--verde-medio); font-weight: 500; }
+  .comparacao-item .icon { font-size: 18px; flex-shrink: 0; }
+
+  /* ── MECANISMO ÚNICO (O PROTOCÓLO DOPAMINÉRGICO) ── */
+  .section-mecanismo {
+    background: var(--creme);
+    padding: 90px 24px;
+  }
+  .mecanismo-inner { max-width: 900px; margin: 0 auto; }
+  .mecanismo-header { text-align: center; margin-bottom: 50px; }
+  .mecanismo-header h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(26px, 4vw, 42px);
+    color: var(--verde-escuro);
+    font-weight: 800;
+  }
+  .mecanismo-header h2 em { color: var(--laranja); font-style: italic; }
+
+  .mecanismo-box {
+    background: linear-gradient(135deg, var(--verde-escuro) 0%, var(--verde-medio) 100%);
+    color: #fff;
+    border-radius: var(--radius-lg);
+    padding: 48px;
+    box-shadow: 0 20px 45px rgba(11, 37, 25, 0.2);
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  .mecanismo-box .title-protocol {
+    font-family: var(--font-heading);
+    font-size: clamp(20px, 3.5vw, 30px);
+    color: var(--dourado);
+    font-weight: 900;
+    margin-bottom: 20px;
+  }
+  .mecanismo-box p {
+    font-size: 17px;
+    color: var(--verde-pastel);
+    line-height: 1.7;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* PASSOS DO PROTOCOLO */
+  .passos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 48px;
+  }
+  @media (max-width: 768px) {
+    .passos { grid-template-columns: 1fr; }
+  }
+  .passo-card {
+    background: var(--branco);
+    border-radius: var(--radius-md);
+    padding: 28px 24px;
+    box-shadow: var(--sombra-card);
+    border: 1px solid #EAECEB;
+    position: relative;
+  }
+  .passo-num {
+    position: absolute;
+    top: -20px;
+    left: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--laranja);
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(242, 100, 25, 0.3);
+  }
+  .passo-card h3 {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--verde-escuro);
+    margin-top: 10px;
+    margin-bottom: 12px;
+  }
+  .passo-card p {
+    font-size: 14px;
+    color: var(--medio);
+    line-height: 1.5;
+  }
+
+  /* ── PRODUTO & VALUE STACK ── */
+  .section-produto {
+    background: var(--branco);
+    padding: 90px 24px;
+  }
+  .produto-inner { max-width: 960px; margin: 0 auto; }
+  .produto-header { text-align: center; margin-bottom: 60px; }
+  .produto-header h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(28px, 4.5vw, 44px);
+    color: var(--verde-escuro);
+    font-weight: 900;
+  }
+  .produto-header h2 em { color: var(--verde-brand); font-style: italic; }
+
+  /* MOCKUP E DETALHES */
+  .produto-main {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 40px;
+    align-items: center;
+    margin-bottom: 60px;
+  }
+  @media (max-width: 768px) {
+    .produto-main { grid-template-columns: 1fr; }
+  }
+  .produto-mockup-wrapper {
+    background: linear-gradient(135deg, #E8F7EE 0%, #D8F3DC 100%);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.03);
+  }
+  .produto-mockup {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    filter: drop-shadow(0 15px 30px rgba(11, 37, 25, 0.2));
+    transition: transform 0.3s ease;
+  }
+  .produto-mockup:hover { transform: scale(1.02); }
+
+  .produto-recursos {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .recurso-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .recurso-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(45, 106, 79, 0.08);
+    color: var(--verde-brand);
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .recurso-item h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--verde-escuro);
+    margin-bottom: 4px;
+  }
+  .recurso-item p {
+    font-size: 14px;
+    color: var(--medio);
+    line-height: 1.5;
+  }
+
+  /* BONUSES (EMPILHAMENTO DE VALOR) */
+  .bonuses-container {
+    background: #F4FAF6;
+    border: 2px dashed var(--verde-brand);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+  }
+  .bonuses-header {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+  .bonuses-header h3 {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    color: var(--verde-escuro);
+  }
+  .bonuses-header p {
+    font-size: 14px;
+    color: var(--laranja);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 4px;
+  }
+  
+  .bonuses-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 640px) {
+    .bonuses-grid { grid-template-columns: 1fr; }
+  }
+  .bonus-card {
+    background: var(--branco);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.02);
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    border: 1px solid #E4ECE7;
+    position: relative;
+  }
+  .bonus-badge {
+    position: absolute;
+    top: 14px; right: 14px;
+    background: var(--dourado);
+    color: var(--verde-escuro);
+    font-size: 10px;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 100px;
+    text-transform: uppercase;
+  }
+  .bonus-icon { font-size: 28px; }
+  .bonus-info h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--verde-escuro);
+    margin-bottom: 4px;
+  }
+  .bonus-info p {
+    font-size: 13px;
+    color: var(--medio);
+    line-height: 1.45;
+  }
+  .bonus-price {
+    font-size: 12px;
+    color: var(--suave);
+    text-decoration: line-through;
+    margin-top: 6px;
+    display: block;
+  }
+  .bonus-price span { color: var(--verde-neon); font-weight: 700; text-decoration: none; display: inline-block; margin-left: 4px; }
+
+  /* ── PROVA SOCIAL (WHATSAPP CHATS & REVIEWS) ── */
+  .section-depoimentos {
+    background: var(--creme);
+    padding: 90px 24px;
+  }
+  .depo-inner { max-width: 900px; margin: 0 auto; }
+  .depo-header { text-align: center; margin-bottom: 50px; }
+  .depo-header h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(26px, 4vw, 42px);
+    color: var(--verde-escuro);
+    font-weight: 800;
+  }
+  .depo-header h2 em { color: var(--verde-brand); font-style: italic; }
+
+  /* WHATSAPP CHAT DESIGN */
+  .whatsapp-chats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 50px;
+  }
+  @media (max-width: 768px) {
+    .whatsapp-chats { grid-template-columns: 1fr; }
+  }
+  .chat-container {
+    background: #E5DDD5;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--sombra-card);
+    border: 1px solid #D5C8C0;
+  }
+  .chat-header {
+    background: #075E54;
+    color: #fff;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .chat-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--verde-pastel);
+    color: var(--verde-escuro);
+    font-family: var(--font-heading);
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+  }
+  .chat-header-info h4 { font-size: 14px; font-weight: 600; }
+  .chat-header-info p { font-size: 11px; color: rgba(255,255,255,0.7); }
+  .chat-body {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');
+    background-size: cover;
+    min-height: 220px;
+  }
+  .chat-bubble {
+    max-width: 85%;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 13.5px;
+    line-height: 1.45;
+    position: relative;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  }
+  .chat-bubble.received {
+    background: #FFF;
+    align-self: flex-start;
+    border-top-left-radius: 0;
+  }
+  .chat-bubble.sent {
+    background: #DCF8C6;
+    align-self: flex-end;
+    border-top-right-radius: 0;
+  }
+  .chat-time {
+    font-size: 10px;
+    color: var(--suave);
+    text-align: right;
+    margin-top: 4px;
+    display: block;
+  }
+
+  /* REVIEW CARDS */
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .review-card {
+    background: var(--branco);
+    border-radius: var(--radius-md);
+    padding: 28px;
+    box-shadow: var(--sombra-card);
+    border: 1px solid #EAECEB;
+  }
+  .review-stars { color: var(--dourado); font-size: 14px; margin-bottom: 12px; }
+  .review-text {
+    font-size: 14px;
+    color: var(--medio);
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+  .review-text strong { color: var(--escuro); }
+  .review-user { display: flex; align-items: center; gap: 12px; }
+  .review-user-info h5 { font-size: 13.5px; font-weight: 700; color: var(--escuro); }
+  .review-user-info p { font-size: 12px; color: var(--suave); }
+
+  /* ── OFERTA / TABELA DE PREÇOS (EXTREMAMENTE AGRESSIVA) ── */
+  .section-oferta {
+    background: linear-gradient(180deg, #0B2519 0%, #06150E 100%);
+    color: #fff;
+    padding: 100px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .section-oferta::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    background: rgba(45, 106, 79, 0.15);
+    border-radius: 50%;
+    filter: blur(100px);
+    pointer-events: none;
+  }
+
+  .oferta-header { text-align: center; max-width: 800px; margin: 0 auto 60px; position: relative; z-index: 2; }
+  .oferta-header h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(30px, 5vw, 48px);
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+  .oferta-header h2 em { color: var(--dourado); font-style: italic; }
+  .oferta-header p { font-size: 18px; color: var(--verde-pastel); }
+
+  /* CRONÔMETRO REGRESSIVO */
+  .countdown-box {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-md);
+    padding: 18px 30px;
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    margin: 30px auto 0;
+    text-align: left;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  }
+  .countdown-box .text {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #FFA3A3;
+  }
+  .countdown-time {
+    font-family: var(--font-heading);
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--branco);
+    letter-spacing: 1px;
+    display: flex;
+    gap: 4px;
+  }
+  .countdown-time span {
+    background: rgba(214, 34, 34, 0.25);
+    border: 1px solid #D62222;
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    animation: pulseGlow 1s infinite alternate;
+  }
+
+  /* CARDS DE OFERTA */
+  .oferta-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1000px;
+    margin: 50px auto 0;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .oferta-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-lg);
+    padding: 48px 36px;
+    width: 340px;
+    position: relative;
+    transition: transform 0.3s, border-color 0.3s;
+    text-align: left;
+  }
+  .oferta-card:hover { transform: translateY(-4px); }
+
+  .oferta-card.premium {
+    background: var(--branco);
+    color: var(--escuro);
+    border: 3px solid var(--laranja);
+    width: 360px;
+    box-shadow: 0 25px 50px rgba(242, 100, 25, 0.25);
+    transform: scale(1.03);
+  }
+  .oferta-card.premium:hover { transform: translateY(-4px) scale(1.03); }
+
+  .tag-premium {
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, var(--laranja) 0%, #D84A04 100%);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 6px 20px;
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    box-shadow: 0 6px 15px rgba(242, 100, 25, 0.4);
+    animation: wiggle 2.5s infinite;
+  }
+
+  @keyframes wiggle {
+    0%, 100% { transform: translateX(-50%) rotate(0deg); }
+    5%, 15% { transform: translateX(-50%) rotate(-3deg); }
+    10%, 20% { transform: translateX(-50%) rotate(3deg); }
+  }
+
+  .plano-nome {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--suave);
+    margin-bottom: 12px;
+  }
+  .oferta-card.premium .plano-nome { color: var(--verde-brand); }
+
+  .preco-de {
+    font-size: 15px;
+    color: var(--suave);
+    text-decoration: line-through;
+    margin-bottom: 2px;
+  }
+  .preco-por {
+    font-family: var(--font-heading);
+    font-size: 60px;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: flex-start;
+  }
+  .preco-por span.cifrao { font-size: 24px; font-weight: 700; margin-top: 8px; margin-right: 4px; }
+  
+  .oferta-card.premium .preco-por { color: var(--escuro); }
+  .oferta-card.basico .preco-por { color: #fff; }
+
+  .preco-obs { font-size: 13px; color: var(--suave); margin-bottom: 30px; }
+  .oferta-card.premium .preco-obs { color: var(--medio); }
+
+  .oferta-divisor { height: 1px; background: rgba(255,255,255,0.08); margin-bottom: 30px; }
+  .oferta-card.premium .oferta-divisor { background: #E4ECE7; }
+
+  .oferta-lista { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; }
+  .oferta-item {
+    font-size: 14.5px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    line-height: 1.45;
+  }
+  .oferta-card.basico .oferta-item { color: rgba(255,255,255,0.8); }
+  .oferta-card.premium .oferta-item { color: var(--medio); }
+  .oferta-item::before {
+    content: '✓';
+    color: var(--verde-neon);
+    font-weight: 800;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .oferta-item.highlight { font-weight: 700; }
+  .oferta-card.premium .oferta-item.highlight { color: var(--verde-escuro); }
+
+  /* BOTOES CHECKOUT */
+  .btn-checkout {
+    display: block;
+    width: 100%;
+    padding: 18px;
+    border-radius: var(--radius-md);
+    font-size: 16px;
+    font-weight: 800;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-checkout:hover { transform: translateY(-2px); }
+  
+  .oferta-card.basico .btn-checkout {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  .oferta-card.basico .btn-checkout:hover { background: rgba(255, 255, 255, 0.15); }
+
+  .oferta-card.premium .btn-checkout {
+    background: linear-gradient(135deg, var(--laranja) 0%, #D84A04 100%);
+    color: #fff;
+    box-shadow: 0 10px 25px rgba(242, 100, 25, 0.35);
+  }
+  .oferta-card.premium .btn-checkout:hover { box-shadow: 0 12px 30px rgba(242, 100, 25, 0.55); }
+
+  .extra-premium-info {
+    text-align: center;
+    font-size: 12px;
+    color: var(--suave);
+    margin-top: 14px;
+    font-weight: 600;
+  }
+
+  /* BARRA DE SELOS DE SEGURANÇA */
+  .seguranca-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 60px;
+    position: relative;
+    z-index: 2;
+  }
+  .seguranca-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--verde-pastel);
+    font-weight: 500;
+  }
+  .seguranca-item span.icon { font-size: 20px; color: var(--dourado); }
+
+  /* ── SEÇÃO GARANTIA EXTREMA (BLINDADA E AGRESSIVA) ── */
+  .section-garantia {
+    background: var(--creme);
+    padding: 90px 24px;
+  }
+  .garantia-box {
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--branco);
+    border: 2px solid var(--verde-brand);
+    border-radius: var(--radius-lg);
+    padding: 50px;
+    box-shadow: var(--sombra-card);
+    display: flex;
+    gap: 40px;
+    align-items: center;
+  }
+  @media (max-width: 640px) {
+    .garantia-box { flex-direction: column; text-align: center; padding: 36px 24px; }
+  }
+  .garantia-selo {
+    font-size: 80px;
+    flex-shrink: 0;
+    animation: float 4s infinite ease-in-out;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .garantia-body h3 {
+    font-family: var(--font-heading);
+    font-size: clamp(22px, 3.5vw, 30px);
+    color: var(--verde-escuro);
+    margin-bottom: 14px;
+    font-weight: 800;
+  }
+  .garantia-body p {
+    font-size: 15.5px;
+    color: var(--medio);
+    line-height: 1.7;
+  }
+  .garantia-body strong { color: var(--escuro); }
+
+  /* ── FAQ ACCORDION ── */
+  .section-faq {
+    background: var(--branco);
+    padding: 90px 24px;
+  }
+  .faq-inner { max-width: 760px; margin: 0 auto; }
+  .faq-header { text-align: center; margin-bottom: 50px; }
+  .faq-header h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(26px, 4vw, 42px);
+    color: var(--verde-escuro);
+    font-weight: 800;
+  }
+  .faq-header h2 em { color: var(--verde-brand); font-style: italic; }
+
+  .faq-list { display: flex; flex-direction: column; gap: 14px; }
+  .faq-item {
+    border: 1px solid #E4ECE7;
+    border-radius: var(--radius-md);
+    background: var(--creme);
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .faq-item.active { border-color: var(--verde-brand); }
+  
+  .faq-q {
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    padding: 24px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--verde-escuro);
+    font-family: var(--font-body);
+    gap: 16px;
+  }
+  .faq-q span.arrow {
+    width: 28px;
+    height: 28px;
+    background: rgba(45, 106, 79, 0.08);
+    border-radius: 50%;
+    color: var(--verde-brand);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    transition: transform 0.25s, background-color 0.25s;
+    flex-shrink: 0;
+  }
+  .faq-item.active .faq-q span.arrow {
+    transform: rotate(45deg);
+    background: var(--laranja);
+    color: #fff;
+  }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    color: var(--medio);
+    font-size: 14.5px;
+    line-height: 1.6;
+    border-top: 0px solid rgba(0,0,0,0);
+  }
+  .faq-item.active .faq-a {
+    border-top: 1px solid #EAECEB;
+    max-height: 200px;
+    padding: 20px 24px;
+  }
+
+  /* ── CTA DE ENCERRAMENTO ── */
+  .cta-final {
+    background: linear-gradient(135deg, var(--verde-escuro) 0%, var(--verde-medio) 100%);
+    padding: 100px 24px;
+    text-align: center;
+    color: #fff;
+    position: relative;
+  }
+  .cta-final-inner { max-width: 700px; margin: 0 auto; position: relative; z-index: 2; }
+  .cta-final h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(30px, 4.8vw, 50px);
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+  .cta-final h2 em { color: var(--dourado); font-style: italic; }
+  .cta-final p {
+    font-size: 18px;
+    color: var(--verde-pastel);
+    margin-bottom: 40px;
+    line-height: 1.6;
+  }
+
+  /* ── FOOTER DE AUTORIDADE ── */
+  footer {
+    background: #060908;
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 48px 24px;
+    font-size: 13px;
+    line-height: 1.8;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+  footer p.cnpj { margin-top: 12px; font-weight: 500; color: rgba(255,255,255,0.25); }
+
+  /* ── NOTIFICAÇÃO COMPRA LIVE (SOCIAL PROOF FLUTUANTE) ── */
+  .toast-compra {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    background: var(--branco);
+    border-radius: var(--radius-md);
+    padding: 14px 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.18);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    z-index: 9999;
+    transform: translateY(120px);
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s;
+    border-left: 4px solid var(--verde-neon);
+    max-width: 320px;
+  }
+  .toast-compra.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  .toast-icon {
+    width: 36px;
+    height: 36px;
+    background: rgba(56, 176, 0, 0.1);
+    color: var(--verde-neon);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .toast-info p {
+    font-size: 12.5px;
+    color: var(--escuro);
+    line-height: 1.4;
+  }
+  .toast-info p strong { font-weight: 700; }
+  .toast-info span.time {
+    font-size: 10px;
+    color: var(--suave);
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* ── POPUP EXIT-INTENT (OFERTA SUPREMA) ── */
+  .modal-exit {
+    position: fixed;
+    inset: 0;
+    background: rgba(11, 37, 25, 0.85);
+    z-index: 100000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    backdrop-filter: blur(8px);
+  }
+  .modal-exit-content {
+    background: var(--branco);
+    border-radius: var(--radius-lg);
+    max-width: 500px;
+    width: 100%;
+    padding: 44px;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.5);
+    border: 3px solid var(--laranja);
+    animation: popUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  @keyframes popUp {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--suave);
+    transition: color 0.2s;
+  }
+  .modal-close:hover { color: var(--escuro); }
+
+  .modal-exit-content .warning-tag {
+    background: rgba(214, 34, 34, 0.1);
+    color: #D62222;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 6px 16px;
+    border-radius: 100px;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+  }
+  .modal-exit-content h3 {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    color: var(--verde-escuro);
+    line-height: 1.2;
+    margin-bottom: 14px;
+    font-weight: 800;
+  }
+  .modal-exit-content p {
+    font-size: 15px;
+    color: var(--medio);
+    line-height: 1.5;
+    margin-bottom: 28px;
+  }
+  .modal-exit-content .price-box {
+    background: var(--creme);
+    padding: 16px;
+    border-radius: var(--radius-md);
+    margin-bottom: 30px;
+    border: 1px solid #EAECEB;
+  }
+  .modal-exit-content .price-box .price {
+    font-family: var(--font-heading);
+    font-size: 38px;
+    font-weight: 900;
+    color: var(--verde-escuro);
+  }
+
+  /* ── FLOATING MOBILE BAR ── */
+  .sticky-bar-mobile {
+    display: none;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: var(--branco);
+    padding: 14px 20px;
+    z-index: 999;
+    box-shadow: 0 -10px 25px rgba(11, 37, 25, 0.15);
+    border-top: 1px solid #EAECEB;
+  }
+  .sticky-bar-mobile a {
+    display: block;
+    background: linear-gradient(135deg, var(--laranja) 0%, #D84A04 100%);
+    color: #fff;
+    text-align: center;
+    padding: 16px;
+    border-radius: var(--radius-md);
+    font-weight: 800;
+    font-size: 15px;
+    text-decoration: none;
+    text-transform: uppercase;
+    box-shadow: var(--sombra-glow);
+  }
+
+  @media (max-width: 640px) {
+    .sticky-bar-mobile { display: block; }
+    body { padding-bottom: 80px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- BARRA TOPO DE ESCASSEZ -->
+<div class="topbar">
+  ⚡ ATENÇÃO: Oferta Especial de <span id="current-day">Hoje</span> liberada apenas para as próximas <strong id="licenses-left">7</strong> licenças.
+</div>
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="badge-urgente">
+      <span class="dot"></span> Método Neurocientífico Prático
+    </div>
+    <h1>
+      Seu filho agitado, desatento ou viciado em telas pode <em>pedir para focar</em> em menos de 7 dias
+    </h1>
+    <p class="hero-sub">
+      Substitua a exaustão das birras por foco autônomo. O único método prático baseado em <strong>reforço dopaminérgico saudável</strong> que as crianças adoram fazer — sem gritos e sem remédios.
+    </p>
+    
+    <a href="#diagnostico" class="btn-principal">
+      Fazer Teste de Atenção Infantil Gratuitamente →
+    </a>
+    
+    <div class="sub-btn">
+      <span>🔒 Garantia de 30 dias</span>
+      <span>⚡ Acesso imediato no e-mail</span>
+      <span>🧩 +2.500 Famílias Impactadas</span>
+    </div>
+
+    <!-- MOCKUP VSL INTERATIVO -->
+    <div class="vsl-container" id="vsl-video">
+      <img src="neurakids_product_mockup.png" alt="NeuraKids Mockup" class="vsl-preview-img">
+      <div class="vsl-overlay" id="vsl-overlay-play">
+        <div class="vsl-play-btn">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <h3 class="vsl-title">Como reverter o "Foco Bloqueado" do seu filho em 3 minutos</h3>
+        <p class="vsl-sub"><span></span> CLIQUE PARA ASSISTIR A APRESENTAÇÃO RÁPIDA</p>
+      </div>
+
+      <!-- SLIDES INTERATIVOS (VSL SIMULADO) -->
+      <div class="vsl-slides-container" id="vsl-slides">
+        <!-- Slide 1 -->
+        <div class="vsl-slide active" data-slide="1">
+          <div class="slide-icon">🧠</div>
+          <h4>O "Sequestro da Dopamina"</h4>
+          <p>O cérebro das crianças está sendo bombardeado por dopamina barata dos vídeos rápidos. Por isso, a escola e as tarefas comuns parecem extremamente "chatas" e insuportáveis para eles.</p>
+        </div>
+        <!-- Slide 2 -->
+        <div class="vsl-slide" data-slide="2">
+          <div class="slide-icon">⚡</div>
+          <h4>A Grande Ilusão</h4>
+          <p>Tentar forçar a concentração com broncas ou punições só aumenta o cortisol (hormônio do estresse). O segredo é criar micro-vitórias estruturadas onde o próprio cérebro da criança busca o foco.</p>
+        </div>
+        <!-- Slide 3 -->
+        <div class="vsl-slide" data-slide="3">
+          <div class="slide-icon">🎯</div>
+          <h4>O Ciclo de Retorno Espontâneo</h4>
+          <p>O NeuraKids usa folhas físicas preparadas com exercícios terapêuticos de nível progressivo. A criança resolve, sente prazer no acerto e o cérebro dela pede para repetir o foco no dia seguinte.</p>
+        </div>
+        <!-- Slide 4 -->
+        <div class="vsl-slide" data-slide="4">
+          <div class="slide-icon">🎁</div>
+          <h4>A Solução Imediata</h4>
+          <p>Hoje, você garante o método completo com +120 atividades + 3 bônus exclusivos por uma fração de uma sessão de psicólogo. Risco ZERO com garantia blindada de 30 dias.</p>
+        </div>
+
+        <div class="vsl-controls">
+          <span style="font-size: 12px; color: var(--suave);" id="vsl-step-label">Slide 1 de 4</span>
+          <div class="vsl-progress-bar">
+            <div class="vsl-progress" id="vsl-progress-indicator"></div>
+          </div>
+          <button class="vsl-btn-next" id="vsl-btn-next">
+            <span>Próximo Passo</span> →
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO DIAGNÓSTICO (QUIZ INTERATIVO) -->
+<section class="quiz-section" id="diagnostico">
+  <div class="quiz-container">
+    <div class="quiz-header">
+      <h3>Diagnóstico de Foco e Atenção</h3>
+      <p>Descubra o perfil cognitivo do seu filho e se o NeuraKids é indicado para ele.</p>
+    </div>
+    
+    <div class="quiz-steps">
+      <div class="quiz-step-dot active" data-step="1"></div>
+      <div class="quiz-step-dot" data-step="2"></div>
+      <div class="quiz-step-dot" data-step="3"></div>
+    </div>
+
+    <!-- QUESTÃO 1 -->
+    <div class="quiz-question-card active" data-q="1">
+      <h4 class="quiz-question-title">1. Qual a idade atual do seu filho(a)?</h4>
+      <div class="quiz-options">
+        <button class="quiz-option-btn" onclick="nextQuestion(1)">2 a 4 anos</button>
+        <button class="quiz-option-btn" onclick="nextQuestion(1)">5 a 7 anos</button>
+        <button class="quiz-option-btn" onclick="nextQuestion(1)">8 a 10 anos</button>
+        <button class="quiz-option-btn" onclick="nextQuestion(1)">11 anos ou mais</button>
+      </div>
+    </div>
+
+    <!-- QUESTÃO 2 -->
+    <div class="quiz-question-card" data-q="2">
+      <h4 class="quiz-question-title">2. Em média, quanto tempo ele passa em frente a telas (celular, tablet, TV) por dia?</h4>
+      <div class="quiz-options">
+        <button class="quiz-option-btn" onclick="nextQuestion(2)">Menos de 1 hora por dia</button>
+        <button class="quiz-option-btn" onclick="nextQuestion(2)">De 1 a 3 horas por dia</button>
+        <button class="quiz-option-btn" onclick="nextQuestion(2)">Mais de 3 horas (Quase o dia todo)</button>
+      </div>
+    </div>
+
+    <!-- QUESTÃO 3 -->
+    <div class="quiz-question-card" data-q="3">
+      <h4 class="quiz-question-title">3. Qual dessas situações causa mais dor ou desgaste na sua rotina?</h4>
+      <div class="quiz-options">
+        <button class="quiz-option-btn" onclick="runDiagnosis()">Gritos e birras para fazer a lição de casa</button>
+        <button class="quiz-option-btn" onclick="runDiagnosis()">Escola reclamando que ele "não presta atenção"</button>
+        <button class="quiz-option-btn" onclick="runDiagnosis()">Agitação extrema e teimosia ao ouvir "não"</button>
+        <button class="quiz-option-btn" onclick="runDiagnosis()">Ele larga tudo pela metade e não se interessa por nada sem tela</button>
+      </div>
+    </div>
+
+    <!-- LOADING SCREEN -->
+    <div class="quiz-loading-card" id="quiz-loading">
+      <div class="spinner"></div>
+      <h4 style="font-family: var(--font-heading); font-size: 22px; color: #fff;">Analisando Perfil Cognitivo...</h4>
+      <ul class="loading-status-list">
+        <li class="loading-status-item" id="load-1">Processando respostas e hábitos diários</li>
+        <li class="loading-status-item" id="load-2">Calculando nível de saturação dopaminérgica</li>
+        <li class="loading-status-item" id="load-3">Verificando compatibilidade com o protocolo NeuraKids</li>
+      </ul>
+    </div>
+
+    <!-- RESULTADOS -->
+    <div class="quiz-results-card" id="quiz-results">
+      <div class="result-banner">
+        <span class="result-banner-icon">🚨</span>
+        <div>
+          <h4>Exaustão de Foco Detectada</h4>
+          <p>Seu filho apresenta fortes sinais de saturação por telas. Estimulação convencional (livros didáticos e broncas) tem apenas 9% de eficácia neste perfil.</p>
+        </div>
+      </div>
+      <div class="quiz-results-text">
+        <p><strong>Excelente notícia para a sua família:</strong> O perfil do seu filho é <strong>98.7% compatível</strong> com o Método NeuraKids.</p>
+        <br>
+        <p>As atividades físicas estruturadas foram desenhadas exatamente para reconectar as vias de foco bloqueadas, reabilitando a concentração do seu filho na primeira semana. <strong>Garantimos o seu cupom de 85% de desconto abaixo.</strong></p>
+      </div>
+      <a href="#ofertas" class="btn-principal" style="width: 100%; text-align: center; font-size: 16px;">
+        Ver Planos Disponíveis com Desconto →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO AGRESSIVA DE DOR -->
+<section class="dor-section">
+  <div class="dor-header">
+    <p style="color: var(--laranja); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 13px; margin-bottom: 8px;">A dura realidade que ninguém te conta</p>
+    <h2>O cérebro do seu filho está sendo <em>sequestrado</em> todos os dias</h2>
+    <p>Não é falta de educação ou preguiça dele. É o vício fisiológico que as grandes empresas de tecnologia criaram.</p>
+  </div>
+
+  <div class="dor-grid">
+    <div class="dor-card">
+      <span class="dor-icon">😤</span>
+      <h3>A Batalha da Lição</h3>
+      <p>Uma tarefa escolar simples de 15 minutos se arrasta por duas horas. O resultado? Gritos, choros, exaustão emocional e um sentimento terrível de que você falhou como mãe.</p>
+    </div>
+    <div class="dor-card">
+      <span class="dor-icon">😔</span>
+      <h3>O Fantasma do Atraso</h3>
+      <p>Você recebe reclamações da escola. Ouve que seu filho "não acompanha os outros", "se dispersa por tudo". O medo do futuro dele se torna um peso constante no seu peito.</p>
+    </div>
+    <div class="dor-card">
+      <span class="dor-icon">📱</span>
+      <h3>O Zumbi das Telas</h3>
+      <p>Ele só se acalma ou obedece se estiver hipnotizado pelo brilho de uma tela de celular ou tablet. Você sabe o mal que isso faz, mas o cansaço te obriga a ceder.</p>
+    </div>
+    <div class="dor-card">
+      <span class="dor-icon">💸</span>
+      <h3>O Ralo de Dinheiro</h3>
+      <p>Terapias caras, consultas de R$ 300, livros que prometem milagres, mas que ficam pegando poeira na estante após uma semana de tentativas frustradas.</p>
+    </div>
+  </div>
+
+  <div class="quote-dor">
+    <p>"Enquanto você tenta vencer o vício com broncas, a mente infantil se distancia de você. A mudança real não vem do castigo, vem da reabilitação do prazer em focar."</p>
+  </div>
+</section>
+
+<!-- COMPARATIVO ANTES VS DEPOIS -->
+<section class="section-comparacao">
+  <div class="comparacao-container">
+    <div class="comparacao-header">
+      <h2>O método convencional versus o <em>Método NeuraKids</em></h2>
+    </div>
+
+    <div class="comparacao-table">
+      <!-- LADO RUIM -->
+      <div class="comparacao-col antigo">
+        <span class="comparacao-tag">Método Antigo</span>
+        <h3>Broncas, telas e estresse</h3>
+        <ul class="comparacao-list">
+          <li class="comparacao-item"><span class="icon">❌</span> Tentar "cansar" a criança com atividades físicas sem foco mental.</li>
+          <li class="comparacao-item"><span class="icon">❌</span> Usar telas para barganhar comportamento ("faz o dever e ganha celular").</li>
+          <li class="comparacao-item"><span class="icon">❌</span> Castigos repetitivos que geram revolta e distância da família.</li>
+          <li class="comparacao-item"><span class="icon">❌</span> Tratar apenas o sintoma e ignorar a reabilitação dopaminérgica.</li>
+        </ul>
+      </div>
+
+      <!-- LADO BOM -->
+      <div class="comparacao-col novo">
+        <span class="comparacao-tag">Com o NeuraKids</span>
+        <h3>Foco leve e reconectado</h3>
+        <ul class="comparacao-list">
+          <li class="comparacao-item"><span class="icon">✅</span> Exercícios físicos em papel que reprogramam o estado de fluxo natural.</li>
+          <li class="comparacao-item"><span class="icon">✅</span> Prazer imediato na conclusão sem precisar de recompensas artificiais.</li>
+          <li class="comparacao-item"><span class="icon">✅</span> Conexão profunda entre pais e filhos no acompanhamento diário.</li>
+          <li class="comparacao-item"><span class="icon">✅</span> 15 minutos diários que geram horas de foco e serenidade no dia.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO DO MECANISMO ÚNICO -->
+<section class="section-mecanismo">
+  <div class="mecanismo-inner">
+    <div class="mecanismo-header">
+      <p style="color: var(--verde-brand); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 13px; margin-bottom: 8px;">A Ciência da Atenção Plena</p>
+      <h2>O Ciclo de <em>Retorno Espontâneo</em></h2>
+    </div>
+
+    <div class="mecanismo-box">
+      <div class="title-protocol">Estimulação Direta no Lobo Frontal</div>
+      <p>Diferente de passatempos genéricos de bancas, cada folha do NeuraKids é milimetricamente calculada. O nível de dificuldade aumenta 3% a cada folha, mantendo a criança no chamado "Estado de Fluxo" — onde o cérebro dela secreta dopamina pelo esforço e conclusão saudável, não pela superestimulação visual de uma tela.</p>
+    </div>
+
+    <div class="passos">
+      <div class="passo-card">
+        <span class="passo-num">1</span>
+        <h3>Impressão Simples</h3>
+        <p>Você imprime em qualquer impressora caseira preta e branca. Coloca um lápis e uma atividade em frente à criança.</p>
+      </div>
+      <div class="passo-card">
+        <span class="passo-num">2</span>
+        <h3>Foco Profundo</h3>
+        <p>A atividade atrai a visão da criança e a mantém concentrada, sem distrações periféricas ou necessidade de supervisão pesada.</p>
+      </div>
+      <div class="passo-card">
+        <span class="passo-num">3</span>
+        <h3>Dopamina Saudável</h3>
+        <p>Ela termina, acerta e sente o pico de "eu consegui". Esse sentimento de sucesso físico ativa a via da dopamina produtiva.</p>
+      </div>
+      <div class="passo-card">
+        <span class="passo-num">4</span>
+        <h3>O Pedido de Volta</h3>
+        <p>Em poucos dias, o cérebro dela passa a buscar essa sensação de dever cumprido. Ela mesma te pede para imprimir mais.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- O QUE VOCÊ RECEBE & VALUE STACK -->
+<section class="section-produto">
+  <div class="produto-inner">
+    <div class="produto-header">
+      <h2>O que está incluso no <em>Método Completo</em></h2>
+      <p style="font-size: 16px; color: var(--medio); max-width: 600px; margin: 12px auto 0;">Mais de 120 atividades de alto impacto cognitivo prontas para serem impressas e aplicadas hoje.</p>
+    </div>
+
+    <div class="produto-main">
+      <div class="produto-mockup-wrapper">
+        <img src="neurakids_product_mockup.png" alt="Produto NeuraKids" class="produto-mockup">
+      </div>
+      <div class="produto-recursos">
+        <div class="recurso-item">
+          <div class="recurso-icon">🧩</div>
+          <div>
+            <h4>Labirintos de Alta Persistência</h4>
+            <p>Exercitam a resiliência à frustração e ensinam a criança a recalcular rotas de forma calma.</p>
+          </div>
+        </div>
+        <div class="recurso-item">
+          <div class="recurso-icon">🎨</div>
+          <div>
+            <h4>Pintura de Regulação Neurológica</h4>
+            <p>Trabalham a coordenação motora fina fina e ativam as áreas corticais de relaxamento.</p>
+          </div>
+        </div>
+        <div class="recurso-item">
+          <div class="recurso-icon">✏️</div>
+          <div>
+            <h4>Treinos de Foco Seletivo</h4>
+            <p>Preparam os olhos e a mente infantil para a leitura fluida e para a atenção nas aulas escolares.</p>
+          </div>
+        </div>
+        <div class="recurso-item">
+          <div class="recurso-icon">🧠</div>
+          <div>
+            <h4>Sequências Lógicas Avançadas</h4>
+            <p>Desenvolvem o raciocínio matemático rápido e a capacidade de iniciar e terminar projetos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BONUSES EXCLUSIVOS (VALUE STACK) -->
+    <div class="bonuses-container">
+      <div class="bonuses-header">
+        <h3>E se você agir rápido agora, levará estes 3 Super Bônus Grátis:</h3>
+        <p>Apenas para compras feitas hoje</p>
+      </div>
+      <div class="bonuses-grid">
+        <div class="bonus-card">
+          <span class="bonus-badge">Grátis</span>
+          <span class="bonus-icon">📱</span>
+          <div class="bonus-info">
+            <h4>Bônus 1: O Guia "Desliga Telas"</h4>
+            <p>O método pacífico para retirar os aparelhos digitais do seu filho sem choro, raiva ou ameaças.</p>
+            <span class="bonus-price">Valia R$ 47,00 <span>Hoje R$ 0,00</span></span>
+          </div>
+        </div>
+        <div class="bonus-card">
+          <span class="bonus-badge">Grátis</span>
+          <span class="bonus-icon">📅</span>
+          <div class="bonus-info">
+            <h4>Bônus 2: Planner de Rotina Infantil</h4>
+            <p>Um modelo visual simples e lúdico para seu filho entender os deveres diários e cumpri-los sozinhos.</p>
+            <span class="bonus-price">Valia R$ 37,00 <span>Hoje R$ 0,00</span></span>
+          </div>
+        </div>
+        <div class="bonus-card">
+          <span class="bonus-badge">Grátis</span>
+          <span class="bonus-icon">🎵</span>
+          <div class="bonus-info">
+            <h4>Bônus 3: Áudios de Neuro-Alinhamento</h4>
+            <p>Frequências acústicas de ondas alfa projetadas para acalmar mentes hiperativas na hora de dormir.</p>
+            <span class="bonus-price">Valia R$ 59,00 <span>Hoje R$ 0,00</span></span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO DEPOIMENTOS (WHATSAPP E PROVA SOCIAL) -->
+<section class="section-depoimentos">
+  <div class="depo-inner">
+    <div class="depo-header">
+      <h2>O alívio real estampado na tela do celular de <em>mães reais</em></h2>
+    </div>
+
+    <!-- SIMULAÇÃO CHAT WHATSAPP -->
+    <div class="whatsapp-chats">
+      <!-- Chat 1 -->
+      <div class="chat-container">
+        <div class="chat-header">
+          <div class="chat-avatar">JM</div>
+          <div class="chat-header-info">
+            <h4>Juliana M. (Mãe do Léo)</h4>
+            <p>online</p>
+          </div>
+        </div>
+        <div class="chat-body">
+          <div class="chat-bubble received">
+            Meninas, eu preciso relatar isso aqui! O Léo sempre foi o "agitado" que a escola vivia reclamando. Eu morria de vergonha nas reuniões... 😢
+            <span class="chat-time">14:32</span>
+          </div>
+          <div class="chat-bubble received">
+            Comprei o NeuraKids sem muita esperança, mas comecei a imprimir todo dia. Ontem a professora me chamou no privado no whats pra elogiar o foco dele na aula! Quase chorei de emoção! Funciona demais! ❤️🙏
+            <span class="chat-time">14:35</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chat 2 -->
+      <div class="chat-container">
+        <div class="chat-header">
+          <div class="chat-avatar" style="background:#FFE3D1; color: var(--laranja);">CS</div>
+          <div class="chat-header-info">
+            <h4>Carla S. (Mãe do Lucas)</h4>
+            <p>online</p>
+          </div>
+        </div>
+        <div class="chat-body">
+          <div class="chat-bubble received">
+            Fazer dever de casa aqui era motivo de choro para nós dois. Ele se distraía com um sopro de vento, uma mosca que passava.
+            <span class="chat-time">18:10</span>
+          </div>
+          <div class="chat-bubble received">
+            Hoje ele veio me puxar pela blusa pedindo "as tarefinhas do cérebro" (apelido que demos pro NeuraKids) kkkkk. Ele sentou sozinho e focou por 20 minutos seguidos sem celular! Uma paz que não tem preço! 🥰
+            <span class="chat-time">18:14</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REVIEWS EM GRADE -->
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Vivia em guerra com minha filha por birras constantes. O NeuraKids nos <strong>conectou de uma forma incrível</strong>. Ela agora consegue respirar e se concentrar em silêncio."</p>
+        <div class="review-user">
+          <div class="chat-avatar" style="background:var(--verde-pastel); color:var(--verde-escuro); font-size:12px; width:30px; height:30px;">RP</div>
+          <div class="review-user-info">
+            <h5>Rafael P.</h5>
+            <p>Pai da Sofia, 6 anos</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Me cobravam muito por impor limites. Mas o que ele precisava era de <strong>ajuda para organizar a mente dele</strong>. O NeuraKids deu essa estrutura lúdica pra ele."</p>
+        <div class="review-user">
+          <div class="chat-avatar" style="background:rgba(255, 159, 28, 0.2); color:var(--laranja); font-size:12px; width:30px; height:30px;">MT</div>
+          <div class="review-user-info">
+            <h5>Marcos T.</h5>
+            <p>Pai do Bê, 7 anos</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO DE OFERTAS & PREÇOS (AGRESSIVO) -->
+<section class="section-oferta" id="ofertas">
+  <div class="oferta-header">
+    <p style="color: var(--dourado); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; font-size: 13px; margin-bottom: 8px;">Acesso Imediato e Vitalício</p>
+    <h2>Invista menos do que o valor de um lanche para <em>salvar o foco do seu filho</em></h2>
+    <p>Escolha o melhor plano para a sua família hoje. Sem mensalidades, pagamento único.</p>
+
+    <!-- COUNTDOWN TIMER -->
+    <div class="countdown-box">
+      <div class="text">⚠️ O DESCONTO EXPIRE EM:</div>
+      <div class="countdown-time" id="countdown-timer">
+        <span id="min">09</span>:<span id="sec">57</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="oferta-grid">
+    <!-- PLANO BÁSICO -->
+    <div class="oferta-card basico">
+      <p class="plano-nome">Método Básico</p>
+      <p class="preco-de">De R$ 47,00</p>
+      <p class="preco-por"><span class="cifrao">R$</span>10</p>
+      <p class="preco-obs">pagamento único · acesso imediato</p>
+      <div class="oferta-divisor"></div>
+      <ul class="oferta-lista">
+        <li class="oferta-item">Mais de 70 atividades neurológicas</li>
+        <li class="oferta-item">Formato PDF pronto para imprimir</li>
+        <li class="oferta-item">Labirintos e Traçados Progressivos</li>
+        <li class="oferta-item">Acesso vitalício ao material</li>
+      </ul>
+      <a href="https://pay.kirvano.com/b2fd4e4e-10e3-474c-aa29-b192e4c36829" class="btn-checkout">Comprar Plano Básico</a>
+    </div>
+
+    <!-- PLANO PREMIUM (DESTAQUE MÁXIMO) -->
+    <div class="oferta-card premium">
+      <span class="tag-premium">🔥 Campeão de Vendas (92% escolhem este)</span>
+      <p class="plano-nome">Combo Premium Completo</p>
+      <p class="preco-de">De R$ 99,00</p>
+      <p class="preco-por" style="color: var(--verde-escuro);"><span class="cifrao">R$</span>17,99</p>
+      <p class="preco-obs" style="color: var(--medio);">pagamento único · acesso imediato</p>
+      <div class="oferta-divisor"></div>
+      <ul class="oferta-lista">
+        <li class="oferta-item highlight"><strong>Mais de 120 atividades</strong> neurológicas</li>
+        <li class="oferta-item">Atualizações mensais de novos exercícios</li>
+        <li class="oferta-item highlight">Bônus 1: O Guia "Desliga Telas" (Incluso)</li>
+        <li class="oferta-item highlight">Bônus 2: Planner de Rotina (Incluso)</li>
+        <li class="oferta-item highlight">Bônus 3: Áudios de Neuro-Alinhamento (Incluso)</li>
+        <li class="oferta-item">Suporte prioritário por WhatsApp</li>
+      </ul>
+      <a href="https://pay.kirvano.com/4ce9e9f4-fdfd-46a2-99ee-00887ff09e06" class="btn-checkout">Quero o Combo Premium Completo →</a>
+      <p class="extra-premium-info">🛡️ Garantia Tripla de Satisfação inclusa</p>
+    </div>
+  </div>
+
+  <!-- SELOS DE SEGURANÇA -->
+  <div class="seguranca-bar">
+    <div class="seguranca-item"><span class="icon">🔒</span> Pagamento 100% Criptografado</div>
+    <div class="seguranca-item"><span class="icon">⚡</span> Entrega Imediata via E-mail</div>
+    <div class="seguranca-item"><span class="icon">🛡️</span> Garantia de Satisfação de 30 Dias</div>
+  </div>
+</section>
+
+<!-- SEÇÃO GARANTIA EXTREMA -->
+<section class="section-garantia">
+  <div class="garantia-box">
+    <span class="garantia-selo">🛡️</span>
+    <div class="garantia-body">
+      <h3>Sua Garantia Blindada de Ferro de 30 Dias</h3>
+      <p>Nós temos tanta certeza dos resultados do NeuraKids que tiramos todo o risco dos seus ombros. Baixe o material, faça a impressão das primeiras atividades e aplique com seu filho. Se em até 30 dias você não notar uma melhora clara no foco, uma redução drástica nas brigas de rotina ou se ele simplesmente não gostar, mande um e-mail. <strong>Nós devolveremos 100% do seu dinheiro imediatamente.</strong> Sem perguntas, sem enrolação e você ainda pode ficar com o material impresso. O risco é inteiramente nosso.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO FAQ (PERGUNTAS FREQUENTES) -->
+<section class="section-faq">
+  <div class="faq-inner">
+    <div class="faq-header">
+      <h2>Dúvidas frequentes sobre o <em>NeuraKids</em></h2>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q">Para quais idades o método é indicado? <span class="arrow">+</span></button>
+        <div class="faq-a">O NeuraKids foi desenvolvido e validado por pedagogos para crianças de 3 a 10 anos de idade. As atividades possuem níveis progressivos que se ajustam perfeitamente ao ritmo de desenvolvimento de cada faixa etária.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Meu filho tem TDAH ou TEA. Vai funcionar? <span class="arrow">+</span></button>
+        <div class="faq-a">Sim! Grande parte das famílias que usam o NeuraKids possuem crianças diagnosticadas com TDAH, hiperatividade ou TEA. O material atua como um excelente e poderoso complemento terapêutico caseiro para treinar a atenção focada offline.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Como eu recebo o material? <span class="arrow">+</span></button>
+        <div class="faq-a">O envio é 100% imediato e digital. Assim que a sua compra for confirmada (via Pix ou cartão), você receberá um link exclusivo no seu e-mail para fazer o download completo do PDF. É só baixar e imprimir quando quiser.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Preciso de impressora colorida? <span class="arrow">+</span></button>
+        <div class="faq-a">Não é obrigatório! O material foi perfeitamente adaptado para manter a alta eficácia cognitiva mesmo impresso em preto e branco (tonalidades de cinza comuns), o que torna a aplicação extremamente econômica para você.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">E se meu filho não quiser fazer os exercícios? <span class="arrow">+</span></button>
+        <div class="faq-a">Esse é o maior diferencial do NeuraKids! As atividades não possuem aspecto de "lição de escola massante". Elas possuem uma estrutura visual de jogo desafiador que instiga a curiosidade infantil, fazendo a própria criança pedir para concluir e buscar novas folhas.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-final">
+  <div class="cta-final-inner">
+    <h2>Dê o primeiro passo para resgatar a <em>paz na sua casa</em> hoje</h2>
+    <p>Não espere a situação com as telas ou o rendimento escolar do seu filho piorar. A atenção dele é o maior patrimônio para o futuro.</p>
+    <a href="#ofertas" class="btn-principal" style="box-shadow: 0 10px 30px rgba(255, 159, 28, 0.45);">Quero Salvar Meu Filho Agora →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 NeuraKids. Todos os direitos reservados.</p>
+  <p style="margin-top: 6px; font-size: 11px;">O NeuraKids é um material educativo de estimulação cognitiva complementar e não deve substituir diagnósticos, terapias e acompanhamentos médicos ou psicológicos especializados.</p>
+  <p class="cnpj">NeuraKids Treinamentos LTDA · CNPJ: 48.912.455/0001-09</p>
+</footer>
+
+<!-- NOTIFICAÇÃO COMPRA FLUTUANTE (LIVE) -->
+<div class="toast-compra" id="live-purchase-toast">
+  <div class="toast-icon">⚡</div>
+  <div class="toast-info">
+    <p id="purchase-text"><strong>Mariana S.</strong> (São Paulo, SP) acabou de adquirir o Combo Premium Completo!</p>
+    <span class="time" id="purchase-time">há 12 segundos</span>
+  </div>
+</div>
+
+<!-- POPUP INTENÇÃO DE SAÍDA (EXIT MODAL) -->
+<div class="modal-exit" id="exit-intent-modal">
+  <div class="modal-exit-content">
+    <button class="modal-close" onclick="closeExitModal()">×</button>
+    <span class="warning-tag">🚨 VAGAS LIMITADAS</span>
+    <h3>ESPERA! Não desista do foco do seu filho agora...</h3>
+    <p>O preço do Plano Premium subirá para R$ 99,00 nas próximas horas. Garanta o método completo + os 3 Bônus Exclusivos por apenas R$ 17,99 antes de fechar esta página.</p>
+    <div class="price-box">
+      <span style="font-size: 13px; color: var(--suave); display: block; text-decoration: line-through;">De R$ 99,00 por apenas</span>
+      <span class="price">R$ 17,99</span>
+    </div>
+    <a href="https://pay.kirvano.com/4ce9e9f4-fdfd-46a2-99ee-00887ff09e06" class="btn-checkout" style="background: linear-gradient(135deg, var(--laranja) 0%, #D84A04 100%); color: #fff;">Quero o Desconto Garantido →</a>
+  </div>
+</div>
+
+<!-- BARRA FIXA MOBILE -->
+<div class="sticky-bar-mobile">
+  <a href="#ofertas">Quero o Método Completo →</a>
+</div>
+
+<!-- SCRIPT COMPORTAMENTAL -->
+<script>
+  // Dynamic current date in portuguese for Topbar
+  const diasDaSemana = ["domingo", "segunda-feira", "terça-feira", "quarta-feira", "quinta-feira", "sexta-feira", "sábado"];
+  const hoje = new Date();
+  const diaString = diasDaSemana[hoje.getDay()];
+  document.getElementById("current-day").textContent = diaString;
+
+  // Licenses counter dynamic decrement simulation
+  let licenses = 7;
+  const licInterval = setInterval(() => {
+    if(licenses > 2) {
+      licenses--;
+      document.getElementById("licenses-left").textContent = licenses;
+    } else {
+      clearInterval(licInterval);
+    }
+  }, 45000); // Decrement every 45s
+
+  // Interactive Slide Show within VSL Mockup
+  const vslVideo = document.getElementById("vsl-video");
+  const vslOverlay = document.getElementById("vsl-overlay-play");
+  const vslSlides = document.getElementById("vsl-slides");
+  const btnNextSlide = document.getElementById("vsl-btn-next");
+  const progressIndicator = document.getElementById("vsl-progress-indicator");
+  const stepLabel = document.getElementById("vsl-step-label");
+  let currentSlide = 1;
+
+  vslVideo.addEventListener("click", function(e) {
+    if(vslOverlay.style.display !== "none") {
+      vslOverlay.style.display = "none";
+      vslSlides.style.display = "flex";
+      // Prevent click bubble to next
+      e.stopPropagation();
+    }
+  });
+
+  btnNextSlide.addEventListener("click", function(e) {
+    e.stopPropagation();
+    const slides = document.querySelectorAll(".vsl-slide");
+    
+    // Deactivate current
+    document.querySelector(`.vsl-slide[data-slide="${currentSlide}"]`).classList.remove("active");
+    
+    currentSlide++;
+    if(currentSlide > slides.length) {
+      currentSlide = 1;
+    }
+
+    // Activate next
+    document.querySelector(`.vsl-slide[data-slide="${currentSlide}"]`).classList.add("active");
+    progressIndicator.style.width = (currentSlide / slides.length * 100) + "%";
+    stepLabel.textContent = `Slide ${currentSlide} de ${slides.length}`;
+  });
+
+  // QUIZ FUNCTIONALITY
+  function nextQuestion(currentQ) {
+    document.querySelector(`.quiz-question-card[data-q="${currentQ}"]`).classList.remove("active");
+    document.querySelector(`.quiz-step-dot[data-step="${currentQ}"]`).classList.remove("active");
+    
+    const nextQ = currentQ + 1;
+    document.querySelector(`.quiz-question-card[data-q="${nextQ}"]`).classList.add("active");
+    document.querySelector(`.quiz-step-dot[data-step="${nextQ}"]`).classList.add("active");
+  }
+
+  function runDiagnosis() {
+    document.querySelector('.quiz-question-card[data-q="3"]').classList.remove("active");
+    document.getElementById("quiz-loading").style.display = "block";
+
+    // Simulate analysis timeline
+    setTimeout(() => {
+      document.getElementById("load-1").classList.add("done");
+    }, 1000);
+
+    setTimeout(() => {
+      document.getElementById("load-2").classList.add("done");
+    }, 2200);
+
+    setTimeout(() => {
+      document.getElementById("load-3").classList.add("done");
+    }, 3200);
+
+    setTimeout(() => {
+      document.getElementById("quiz-loading").style.display = "none";
+      document.getElementById("quiz-results").style.display = "block";
+    }, 4000);
+  }
+
+  // COUNTDOWN TIMER (10 MINUTES FROM LOAD)
+  let minutes = 9;
+  let seconds = 57;
+  const countTimer = setInterval(() => {
+    if(seconds > 0) {
+      seconds--;
+    } else {
+      if(minutes > 0) {
+        minutes--;
+        seconds = 59;
+      } else {
+        // Reset countdown to continue pressure instead of zeroing
+        minutes = 8;
+        seconds = 45;
+      }
+    }
+    document.getElementById("min").textContent = minutes < 10 ? "0" + minutes : minutes;
+    document.getElementById("sec").textContent = seconds < 10 ? "0" + seconds : seconds;
+  }, 1000);
+
+  // ACCORDION FAQ
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const isActive = item.classList.contains('active');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+      if(!isActive) {
+        item.classList.add('active');
+      }
+    });
+  });
+
+  // FLOATING PURCHASE TOAST SIMULATOR
+  const nomesCompradores = ["Mariana S.", "Roberta F.", "Ana Clara G.", "Patrícia D.", "Juliana K.", "Marta L.", "Luciana V.", "Renata P.", "Fernanda R."];
+  const cidadesCompradores = ["São Paulo, SP", "Rio de Janeiro, RJ", "Belo Horizonte, MG", "Curitiba, PR", "Porto Alegre, RS", "Brasília, DF", "Salvador, BA", "Campinas, SP", "Florianópolis, SC"];
+  const pacotesCompradores = ["Combo Premium Completo", "Plano Básico", "Combo Premium Completo", "Combo Premium Completo"];
+  const toast = document.getElementById("live-purchase-toast");
+
+  function triggerPurchaseToast() {
+    const randomIdx = Math.floor(Math.random() * nomesCompradores.length);
+    const randomPacoteIdx = Math.floor(Math.random() * pacotesCompradores.length);
+    
+    const nome = nomesCompradores[randomIdx];
+    const cidade = cidadesCompradores[randomIdx];
+    const pacote = pacotesCompradores[randomPacoteIdx];
+    const tempo = Math.floor(Math.random() * 45) + 5; // 5s to 50s
+
+    document.getElementById("purchase-text").innerHTML = `<strong>${nome}</strong> (${cidade}) acabou de adquirir o <strong>${pacote}</strong>!`;
+    document.getElementById("purchase-time").textContent = `há ${tempo} segundos`;
+    
+    toast.classList.add("show");
+
+    setTimeout(() => {
+      toast.classList.remove("show");
+    }, 6000); // Keep on screen for 6s
+  }
+
+  // Trigger toast every 22 seconds (first after 10s)
+  setTimeout(() => {
+    triggerPurchaseToast();
+    setInterval(triggerPurchaseToast, 22000);
+  }, 10000);
+
+  // EXIT INTENT DETECTOR
+  let exitTriggered = false;
+  
+  // Desktop mouse exit detector
+  document.addEventListener("mouseleave", function (e) {
+    if (e.clientY < 20 && !exitTriggered) {
+      triggerExitIntent();
+    }
+  });
+
+  // Mobile fast scroll-up / exit intent detector
+  let lastScrollTop = 0;
+  window.addEventListener("scroll", function() {
+    let st = window.pageYOffset || document.documentElement.scrollTop;
+    // If scrolling up fast and near top
+    if (st < lastScrollTop && st < 150 && lastScrollTop - st > 45 && !exitTriggered) {
+      triggerExitIntent();
+    }
+    lastScrollTop = st <= 0 ? 0 : st;
+  }, false);
+
+  function triggerExitIntent() {
+    exitTriggered = true;
+    document.getElementById("exit-intent-modal").style.display = "flex";
+  }
+
+  function closeExitModal() {
+    document.getElementById("exit-intent-modal").style.display = "none";
+  }
+</script>
+</body>
+</html>
